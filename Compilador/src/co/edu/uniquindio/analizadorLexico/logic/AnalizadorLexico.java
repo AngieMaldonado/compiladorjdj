@@ -498,45 +498,33 @@ public class AnalizadorLexico
 		atras(posicionAtras, filaIniToken, columnaInicialToken);
 
 		//para definicion de clase
-		if(caracterActual == '|')
+		if(caracterActual == 'c')
 		{
 			lenguaje+=caracterActual;
 			siguienteCaracter();
 
-			if(caracterActual == 'c')
+			if(caracterActual == 'l')
 			{
 				lenguaje+=caracterActual;
 				siguienteCaracter();
 
-				if(caracterActual == 'l')
+				if(caracterActual == 'a')
 				{
 					lenguaje+=caracterActual;
 					siguienteCaracter();
 
-					if(caracterActual == 'a')
+					if(caracterActual == 's')
 					{
 						lenguaje+=caracterActual;
 						siguienteCaracter();
 
-						if(caracterActual == 's')
+						if(caracterActual == 'e')
 						{
 							lenguaje+=caracterActual;
+							almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
 							siguienteCaracter();
-
-							if(caracterActual == 'e')
-							{
-								lenguaje+=caracterActual;
-								siguienteCaracter();
-
-								if(caracterActual == '|')
-								{
-									lenguaje+=caracterActual;
-									siguienteCaracter();
-
-									almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
-									return true;
-								}
-							}
+							return true;
+							
 						}
 					}
 				}
@@ -935,9 +923,18 @@ public class AnalizadorLexico
 							if(caracterActual=='t')
 							{
 								lenguaje+=caracterActual;
-								almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
 								siguienteCaracter();
-								return true;
+								if(caracterActual=='a')
+								{
+									lenguaje+=caracterActual;
+									siguienteCaracter();
+									if(caracterActual=='r')
+									{
+										almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
+										siguienteCaracter();
+										return true;
+									}
+								}
 							}
 						}
 					}
@@ -960,6 +957,64 @@ public class AnalizadorLexico
 				{
 					lenguaje+=caracterActual;
 					siguienteCaracter();
+					if(caracterActual=='l')
+					{
+						lenguaje+=caracterActual;
+						siguienteCaracter();
+						if(caracterActual=='i')
+						{
+							lenguaje+=caracterActual;
+							siguienteCaracter();
+							if(caracterActual=='c')
+							{
+								lenguaje+=caracterActual;
+								almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
+								siguienteCaracter();
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		atras(posicionAtras, filaIniToken, columnaInicialToken);
+		lenguaje="";
+		
+		//privado
+		if(caracterActual=='p')
+		{
+			lenguaje+=caracterActual;
+			siguienteCaracter();
+			if(caracterActual=='r')
+			{
+				lenguaje+=caracterActual;
+				siguienteCaracter();
+				if(caracterActual=='i')
+				{
+					lenguaje+=caracterActual;
+					siguienteCaracter();
+					if(caracterActual=='v')
+					{
+						lenguaje+=caracterActual;
+						siguienteCaracter();
+						if(caracterActual=='a')
+						{
+							lenguaje+=caracterActual;
+							siguienteCaracter();
+							if(caracterActual=='d')
+							{
+								lenguaje+=caracterActual;
+								siguienteCaracter();
+								if(caracterActual=='o')
+								{
+									lenguaje+=caracterActual;
+									almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
+									siguienteCaracter();
+									return true;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
