@@ -7,30 +7,29 @@ import java.util.ArrayList;
  * @author Dival Mauricio Hoyos Castro
  * @author Julian David Serna Echeverri
  * @version 1.1 Septiembre-2013 
- * Esta clase es la que contiene los atributos de InstruccionesClase.java y 
+ * Esta clase es la que contiene los atributos de BloqueInstruccion.java y 
  * maneja su información
  */
-public class InstruccionesClase 
-{
+public class BloqueInstruccion 
+{	
 	/**
 	 * Atributo que contiene el valor de instrucciones dentro de la clase
 	*/
-	private ArrayList<InstruccionClase> instrucciones;
+	ArrayList<Instruccion> instrucciones;
 
 	/**
-	 * Metodo que se encarga de reservar memoria y luego instanciar la InstruccionesClase.java
-	 * @param instrucciones
+	 * Metodo que se encarga de reservar memoria y luego instanciar la BloqueInstruccion.java
+	 * @param idBloqueInstruccion
 	 */
-	public InstruccionesClase(ArrayList<InstruccionClase> instrucciones) {
+	public BloqueInstruccion() {
 		super();
-		this.instrucciones = instrucciones;
 	}
 
 	/**
 	 * Este metodo permite obtener el valor del atributo instrucciones
 	 * @return el instrucciones
 	 */
-	public ArrayList<InstruccionClase> getInstrucciones() {
+	public ArrayList<Instruccion> getInstrucciones() {
 		return instrucciones;
 	}
 
@@ -38,7 +37,7 @@ public class InstruccionesClase
 	 * Este metodo permite asignar un valor al atributo instrucciones
 	 * @param instrucciones se asigna a instrucciones
 	 */
-	public void setInstrucciones(ArrayList<InstruccionClase> instrucciones) {
+	public void setInstrucciones(ArrayList<Instruccion> instrucciones) {
 		this.instrucciones = instrucciones;
 	}
 }
