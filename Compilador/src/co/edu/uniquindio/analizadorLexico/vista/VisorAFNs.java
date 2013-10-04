@@ -83,7 +83,7 @@ public class VisorAFNs extends javax.swing.JFrame implements ActionListener{
 
 	private void listar()
 	{
-		String letra = "./src/co/edu/uniquindio/imagenes/";
+		String letra = "./src/co/edu/uniquindio/analizadorLexico/imagenes/";
 		File Dir = new File(letra);
 		ficheros = Dir.listFiles();
 		nombres = new String[ficheros.length];

@@ -868,6 +868,100 @@ public class AnalizadorLexico
 			}
 		}
 		atras(posicionAtras, filaIniToken, columnaInicialToken);
+		lenguaje="";
+		
+		//paquete
+		if(caracterActual=='P')
+		{
+			lenguaje+=caracterActual;
+			siguienteCaracter();
+			if(caracterActual=='a')
+			{
+				lenguaje+=caracterActual;
+				siguienteCaracter();
+				if(caracterActual=='q')
+				{
+					lenguaje+=caracterActual;
+					siguienteCaracter();
+					if(caracterActual=='u')
+					{
+						lenguaje+=caracterActual;
+						siguienteCaracter();
+						if(caracterActual=='e')
+						{
+							lenguaje+=caracterActual;
+							siguienteCaracter();
+							if(caracterActual=='t')
+							{
+								lenguaje+=caracterActual;
+								siguienteCaracter();
+								if(caracterActual=='e')
+								{
+									lenguaje+=caracterActual;
+									almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
+									siguienteCaracter();
+									return true;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		atras(posicionAtras, filaIniToken, columnaInicialToken);
+		lenguaje="";
+		
+		//paquete
+		if(caracterActual=='I')
+		{
+			lenguaje+=caracterActual;
+			siguienteCaracter();
+			if(caracterActual=='m')
+			{
+				lenguaje+=caracterActual;
+				siguienteCaracter();
+				if(caracterActual=='p')
+				{
+					lenguaje+=caracterActual;
+					siguienteCaracter();
+					if(caracterActual=='o')
+					{
+						lenguaje+=caracterActual;
+						siguienteCaracter();
+						if(caracterActual=='r')
+						{
+							lenguaje+=caracterActual;
+							siguienteCaracter();
+							if(caracterActual=='t')
+							{
+								lenguaje+=caracterActual;
+								almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
+								siguienteCaracter();
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		atras(posicionAtras, filaIniToken, columnaInicialToken);
+		lenguaje="";
+		
+		//publico
+		if(caracterActual=='p')
+		{
+			lenguaje+=caracterActual;
+			siguienteCaracter();
+			if(caracterActual=='u')
+			{
+				
+			}
+		}
+		
+		atras(posicionAtras, filaIniToken, columnaInicialToken);
+		lenguaje="";
+		
+		atras(posicionAtras, filaIniToken, columnaInicialToken);
 		return false;
 
 
