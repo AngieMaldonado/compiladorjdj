@@ -954,7 +954,12 @@ public class AnalizadorLexico
 			siguienteCaracter();
 			if(caracterActual=='u')
 			{
-				
+				lenguaje+=caracterActual;
+				siguienteCaracter();
+				if(caracterActual=='b')
+				{
+					
+				}
 			}
 		}
 		
