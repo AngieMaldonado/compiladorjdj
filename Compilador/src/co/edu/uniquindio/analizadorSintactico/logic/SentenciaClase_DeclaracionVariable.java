@@ -12,8 +12,13 @@ import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
  * Esta clase es la que contiene los atributos de DeclaracionVariable.java y 
  * maneja su información
  */
-public class DeclaracionVariable extends SentenciaClase
+public class SentenciaClase_DeclaracionVariable extends SentenciaClase
 {
+	/**
+	 * Atributo que contiene el valor de tipoAcceso dentro de la clase
+	*/
+	private Lenguaje tipoAcceso;
+	
 	/**
 	 * Atributo que contiene el valor de tipo dentro de la clase
 	*/
@@ -26,14 +31,32 @@ public class DeclaracionVariable extends SentenciaClase
 
 	/**
 	 * Metodo que se encarga de reservar memoria y luego instanciar la DeclaracionVariable.java
+	 * @param tipoAcceso
 	 * @param tipo
 	 * @param indentificadoresVariables
 	 */
-	public DeclaracionVariable(Lenguaje tipo,
+	public SentenciaClase_DeclaracionVariable(Lenguaje tipoAcceso, Lenguaje tipo,
 			List<Lenguaje> indentificadoresVariables) {
 		super();
+		this.tipoAcceso = tipoAcceso;
 		this.tipo = tipo;
 		this.indentificadoresVariables = indentificadoresVariables;
+	}
+
+	/**
+	 * Este metodo permite obtener el valor del atributo tipoAcceso
+	 * @return el tipoAcceso
+	 */
+	public Lenguaje getTipoAcceso() {
+		return tipoAcceso;
+	}
+
+	/**
+	 * Este metodo permite asignar un valor al atributo tipoAcceso
+	 * @param tipoAcceso se asigna a tipoAcceso
+	 */
+	public void setTipoAcceso(Lenguaje tipoAcceso) {
+		this.tipoAcceso = tipoAcceso;
 	}
 
 	/**
@@ -68,6 +91,4 @@ public class DeclaracionVariable extends SentenciaClase
 			List<Lenguaje> indentificadoresVariables) {
 		this.indentificadoresVariables = indentificadoresVariables;
 	}
-	
-	
 }
