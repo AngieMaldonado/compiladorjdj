@@ -1021,8 +1021,6 @@ public class AnalizadorLexico
 		
 		atras(posicionAtras, filaIniToken, columnaInicialToken);
 		lenguaje="";
-		
-		atras(posicionAtras, filaIniToken, columnaInicialToken);
 		return false;
 
 

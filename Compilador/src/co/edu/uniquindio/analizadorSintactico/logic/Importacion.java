@@ -2,6 +2,8 @@ package co.edu.uniquindio.analizadorSintactico.logic;
 
 import java.util.List;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro
@@ -27,6 +29,29 @@ public class Importacion
 		this.imports = imports;
 	}
 
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la Importacion.java
+	 */
+	public Importacion() {}
+	
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Importacion");
+		
+		if(imports !=null && imports.size()>0)
+		{
+			DefaultMutableTreeNode raizImports= new DefaultMutableTreeNode("Imports");
+			
+			for(Import importaciones : imports)
+			{
+				raizImports.add(importaciones.getArbolVisual());
+			}
+			
+			miRaiz.add(raizImports);
+		}		
+		return miRaiz;
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo imports
 	 * @return el imports

@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -25,7 +27,20 @@ public class Paquete
 		super();
 		this.identificadorPaquete = identificadorPaquete;
 	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la Paquete.java
+	 */
+	public Paquete() {}
 
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Paquete");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+identificadorPaquete.getToken()));
+		
+		return miRaiz;
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo identificadorPaquete
 	 * @return el identificadorPaquete

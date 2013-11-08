@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro
@@ -39,6 +41,25 @@ public class UnidadCompilacion
 		this.declaracionClase = declaracionClase;
 	}
 
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la UnidadCompilacion.java
+	 */
+	public UnidadCompilacion() {}
+	
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual() 
+	 { 
+		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("Unidad de Compilación"); 
+		miRaiz.add(paquete.getArbolVisual());
+		miRaiz.add(imports.getArbolVisual());
+		miRaiz.add(declaracionClase.getArbolVisual());
+	 
+		return miRaiz; 
+	 } 
+
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo paquete
 	 * @return el paquete

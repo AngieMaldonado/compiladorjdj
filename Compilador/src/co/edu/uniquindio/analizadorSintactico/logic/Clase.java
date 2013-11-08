@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -33,6 +35,23 @@ public class Clase {
 		this.cuerpoClase = cuerpoClase;
 	}
 
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la Clase.java
+	 */
+	public Clase() {}
+	
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Clase");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+identificadorClase.getToken()));
+		miRaiz.add(cuerpoClase.getArbolVisual());
+		
+		return miRaiz;
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo identificadorClase
 	 * @return el identificadorClase
