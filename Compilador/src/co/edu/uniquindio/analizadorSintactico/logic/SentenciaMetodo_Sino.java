@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -33,6 +35,11 @@ public class SentenciaMetodo_Sino extends SentenciaMetodo
 		this.condiciones = condiciones;
 		this.operaciones = operaciones;
 	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaMetodo_Sino.java
+	 */
+	public SentenciaMetodo_Sino(){}
 
 	/**
 	 * Este metodo permite obtener el valor del atributo condiciones
@@ -65,4 +72,5 @@ public class SentenciaMetodo_Sino extends SentenciaMetodo
 	public void setOperaciones(SentenciasMetodo operaciones) {
 		this.operaciones = operaciones;
 	}
+
 }

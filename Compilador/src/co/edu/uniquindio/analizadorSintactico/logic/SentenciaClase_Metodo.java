@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -55,7 +57,25 @@ public class SentenciaClase_Metodo extends SentenciaClase
 		this.parametros = parametros;
 		this.cuerpoMetodo = cuerpoMetodo;
 	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaClase_Metodo.java
+	 */
+	public SentenciaClase_Metodo(){}
 
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Metodo");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+ tipoAcceso.getToken()));
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + tipoRetorno.getToken()));
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + identificadorMetodo.getToken()));
+		miRaiz.add(parametros.getArbolVisual());
+		miRaiz.add(cuerpoMetodo.getArbolVisual());
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo tipoAcceso
 	 * @return el tipoAcceso

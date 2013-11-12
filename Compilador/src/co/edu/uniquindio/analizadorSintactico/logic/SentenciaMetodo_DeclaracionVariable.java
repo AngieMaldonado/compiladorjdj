@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -33,7 +35,24 @@ public class SentenciaMetodo_DeclaracionVariable extends SentenciaMetodo
 		this.tipo = tipo;
 		this.identificadorVariable = identificadorVariable;
 	}
-
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaMetodo_DeclaracionVariable.java
+	 */
+	public SentenciaMetodo_DeclaracionVariable(){}
+	
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("DeclaracionVariable");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+tipo.getToken()));
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+identificadorVariable.getToken()));
+		
+		return miRaiz;
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo tipo
 	 * @return el tipo

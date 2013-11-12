@@ -2,6 +2,8 @@ package co.edu.uniquindio.analizadorSintactico.logic;
 
 import java.util.List;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -27,7 +29,7 @@ public class SentenciaClase_DeclaracionVariable extends SentenciaClase
 	/**
 	 * Atributo que contiene el valor de indentificadoresVariables dentro de la clase
 	*/
-	private List<Lenguaje> indentificadoresVariables;
+	private List<Lenguaje> identificadoresVariables;
 
 	/**
 	 * Metodo que se encarga de reservar memoria y luego instanciar la DeclaracionVariable.java
@@ -36,11 +38,40 @@ public class SentenciaClase_DeclaracionVariable extends SentenciaClase
 	 * @param indentificadoresVariables
 	 */
 	public SentenciaClase_DeclaracionVariable(Lenguaje tipoAcceso, Lenguaje tipo,
-			List<Lenguaje> indentificadoresVariables) {
+			List<Lenguaje> identificadoresVariables) {
 		super();
 		this.tipoAcceso = tipoAcceso;
 		this.tipo = tipo;
-		this.indentificadoresVariables = indentificadoresVariables;
+		this.identificadoresVariables = identificadoresVariables;
+	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaClase_DeclaracionVariable.java
+	 */
+	public SentenciaClase_DeclaracionVariable() {}
+	
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("DeclaracionVariable");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + tipoAcceso.getToken()));
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + tipo.getToken()));
+		
+		if(identificadoresVariables != null && identificadoresVariables.size()>0)
+		{
+			DefaultMutableTreeNode raizIdentificadoresVariables= new DefaultMutableTreeNode("Identificadores de Variable");
+			
+			for(Lenguaje identiVariables : identificadoresVariables)
+			{
+				raizIdentificadoresVariables.add(new DefaultMutableTreeNode("Nombre: "+identiVariables.getToken()));
+			}
+			
+			miRaiz.add(raizIdentificadoresVariables);
+		}
+		
+		return miRaiz;
 	}
 
 	/**
@@ -79,16 +110,16 @@ public class SentenciaClase_DeclaracionVariable extends SentenciaClase
 	 * Este metodo permite obtener el valor del atributo indentificadoresVariables
 	 * @return el indentificadoresVariables
 	 */
-	public List<Lenguaje> getIndentificadoresVariables() {
-		return indentificadoresVariables;
+	public List<Lenguaje> getIdentificadoresVariables() {
+		return identificadoresVariables;
 	}
 
 	/**
 	 * Este metodo permite asignar un valor al atributo indentificadoresVariables
-	 * @param indentificadoresVariables se asigna a indentificadoresVariables
+	 * @param identificadoresVariables se asigna a identificadoresVariables
 	 */
 	public void setIndentificadoresVariables(
-			List<Lenguaje> indentificadoresVariables) {
-		this.indentificadoresVariables = indentificadoresVariables;
+			List<Lenguaje> identificadoresVariables) {
+		this.identificadoresVariables = identificadoresVariables;
 	}
 }

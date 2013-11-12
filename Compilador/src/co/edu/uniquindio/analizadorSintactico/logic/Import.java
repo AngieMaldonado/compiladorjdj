@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -25,7 +27,23 @@ public class Import
 		super();
 		this.identificadorClase = identificadorClase;
 	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la Import.java
+	 */
+	public Import(){}
 
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Import");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+identificadorClase.getToken()));
+		
+		return miRaiz;
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo identificadorClase
 	 * @return el identificadorClase

@@ -34,6 +34,9 @@ public class Importacion
 	 */
 	public Importacion() {}
 	
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
 	public DefaultMutableTreeNode getArbolVisual()
 	{
 		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Importacion");

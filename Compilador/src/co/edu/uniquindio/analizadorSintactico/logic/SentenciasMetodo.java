@@ -2,6 +2,8 @@ package co.edu.uniquindio.analizadorSintactico.logic;
 
 import java.util.List;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro
@@ -25,7 +27,33 @@ public class SentenciasMetodo
 		super();
 		this.sentenciasMetodo = sentenciasMetodo;
 	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciasMetodo.java
+	 */
+	public SentenciasMetodo(){}
 
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("SentenciasMetodo");
+		
+		if(sentenciasMetodo !=null && sentenciasMetodo.size()>0)
+		{
+			DefaultMutableTreeNode raizSentencias= new DefaultMutableTreeNode("SentenciaMetodo");
+			
+			for(SentenciaMetodo sentencias : sentenciasMetodo)
+			{
+				raizSentencias.add(sentencias.getArbolVisual());
+			}
+			
+			miRaiz.add(raizSentencias);
+		}		
+		return miRaiz;
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo sentenciasMetodo
 	 * @return el sentenciasMetodo

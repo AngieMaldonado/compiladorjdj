@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -24,6 +26,22 @@ public class SentenciaMetodo_Delocontrario extends SentenciaMetodo
 	public SentenciaMetodo_Delocontrario(SentenciasMetodo operaciones) {
 		super();
 		this.operaciones = operaciones;
+	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaMetodo_Delocontrario.java
+	 */
+	public SentenciaMetodo_Delocontrario(){}
+	
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaMetodo#getArbolVisual()
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("De lo contrario");
+		miRaiz.add(operaciones.getArbolVisual());
+		
+		return miRaiz;
 	}
 
 	/**

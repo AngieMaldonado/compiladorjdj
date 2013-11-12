@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro
@@ -10,5 +12,8 @@ package co.edu.uniquindio.analizadorSintactico.logic;
  */
 public abstract class SentenciaMetodo 
 {
-
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public abstract DefaultMutableTreeNode getArbolVisual();
 }
