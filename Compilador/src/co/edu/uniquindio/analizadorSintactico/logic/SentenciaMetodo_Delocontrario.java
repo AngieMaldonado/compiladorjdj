@@ -2,8 +2,6 @@ package co.edu.uniquindio.analizadorSintactico.logic;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
-
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro

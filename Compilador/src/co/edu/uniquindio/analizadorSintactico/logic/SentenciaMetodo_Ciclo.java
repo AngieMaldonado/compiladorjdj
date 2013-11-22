@@ -13,17 +13,17 @@ public class SentenciaMetodo_Ciclo extends SentenciaMetodo
 	/**
 	 * Atributo que contiene el valor de asignacion dentro de la clase
 	*/
-	Asignacion asignacion;
+	Operacion asignacion;
 	
 	/**
 	 * Atributo que contiene el valor de condicion dentro de la clase
 	*/
-	Condiciones condicion;
+	Operacion condicion;
 	
 	/**
 	 * Atributo que contiene el valor de iteracion dentro de la clase
 	*/
-	Operaciones iteracion;
+	Operacion iteracion;
 	
 	/**
 	 * Atributo que contiene el valor de operaciones dentro de la clase
@@ -37,8 +37,8 @@ public class SentenciaMetodo_Ciclo extends SentenciaMetodo
 	 * @param iteracion
 	 * @param operaciones
 	 */
-	public SentenciaMetodo_Ciclo(Asignacion asignacion, Condiciones condicion,
-			Operaciones iteracion, SentenciasMetodo operaciones) {
+	public SentenciaMetodo_Ciclo(Operacion asignacion, Operacion condicion,
+			Operacion iteracion, SentenciasMetodo operaciones) {
 		super();
 		this.asignacion = asignacion;
 		this.condicion = condicion;
@@ -50,7 +50,7 @@ public class SentenciaMetodo_Ciclo extends SentenciaMetodo
 	 * Este metodo permite obtener el valor del atributo asignacion
 	 * @return el asignacion
 	 */
-	public Asignacion getAsignacion() {
+	public Operacion getAsignacion() {
 		return asignacion;
 	}
 
@@ -58,7 +58,7 @@ public class SentenciaMetodo_Ciclo extends SentenciaMetodo
 	 * Este metodo permite asignar un valor al atributo asignacion
 	 * @param asignacion se asigna a asignacion
 	 */
-	public void setAsignacion(Asignacion asignacion) {
+	public void setAsignacion(Operacion asignacion) {
 		this.asignacion = asignacion;
 	}
 
@@ -66,7 +66,7 @@ public class SentenciaMetodo_Ciclo extends SentenciaMetodo
 	 * Este metodo permite obtener el valor del atributo condicion
 	 * @return el condicion
 	 */
-	public Condiciones getCondicion() {
+	public Operacion getCondicion() {
 		return condicion;
 	}
 
@@ -74,7 +74,7 @@ public class SentenciaMetodo_Ciclo extends SentenciaMetodo
 	 * Este metodo permite asignar un valor al atributo condicion
 	 * @param condicion se asigna a condicion
 	 */
-	public void setCondicion(Condiciones condicion) {
+	public void setCondicion(Operacion condicion) {
 		this.condicion = condicion;
 	}
 
@@ -82,7 +82,7 @@ public class SentenciaMetodo_Ciclo extends SentenciaMetodo
 	 * Este metodo permite obtener el valor del atributo iteracion
 	 * @return el iteracion
 	 */
-	public Operaciones getIteracion() {
+	public Operacion getIteracion() {
 		return iteracion;
 	}
 
@@ -90,7 +90,7 @@ public class SentenciaMetodo_Ciclo extends SentenciaMetodo
 	 * Este metodo permite asignar un valor al atributo iteracion
 	 * @param iteracion se asigna a iteracion
 	 */
-	public void setIteracion(Operaciones iteracion) {
+	public void setIteracion(Operacion iteracion) {
 		this.iteracion = iteracion;
 	}
 

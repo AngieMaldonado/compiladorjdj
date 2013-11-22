@@ -17,7 +17,7 @@ public class SentenciaMetodo_Sino extends SentenciaMetodo
 	/**
 	 * Atributo que contiene el valor de condiciones dentro de la clase
 	*/
-	Condiciones condiciones;
+	Operacion condiciones;
 	
 	/**
 	 * Atributo que contiene el valor de operaciones dentro de la clase
@@ -29,7 +29,7 @@ public class SentenciaMetodo_Sino extends SentenciaMetodo
 	 * @param condiciones
 	 * @param operaciones
 	 */
-	public SentenciaMetodo_Sino(Condiciones condiciones,
+	public SentenciaMetodo_Sino(Operacion condiciones,
 			SentenciasMetodo operaciones) {
 		super();
 		this.condiciones = condiciones;
@@ -45,7 +45,7 @@ public class SentenciaMetodo_Sino extends SentenciaMetodo
 	 * Este metodo permite obtener el valor del atributo condiciones
 	 * @return el condiciones
 	 */
-	public Condiciones getCondiciones() {
+	public Operacion getCondiciones() {
 		return condiciones;
 	}
 
@@ -53,7 +53,7 @@ public class SentenciaMetodo_Sino extends SentenciaMetodo
 	 * Este metodo permite asignar un valor al atributo condiciones
 	 * @param condiciones se asigna a condiciones
 	 */
-	public void setCondiciones(Condiciones condiciones) {
+	public void setCondiciones(Operacion condiciones) {
 		this.condiciones = condiciones;
 	}
 
@@ -72,5 +72,4 @@ public class SentenciaMetodo_Sino extends SentenciaMetodo
 	public void setOperaciones(SentenciasMetodo operaciones) {
 		this.operaciones = operaciones;
 	}
-
 }

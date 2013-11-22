@@ -18,7 +18,7 @@ public class SentenciaMetodo_Hacermientras extends SentenciaMetodo
 	/**
 	 * Atributo que contiene el valor de condiciones dentro de la clase
 	*/
-	Condiciones condiciones;
+	Operacion condiciones;
 
 	/**
 	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaMetodo_Hacermientras.java
@@ -26,7 +26,7 @@ public class SentenciaMetodo_Hacermientras extends SentenciaMetodo
 	 * @param condiciones
 	 */
 	public SentenciaMetodo_Hacermientras(SentenciasMetodo operaciones,
-			Condiciones condiciones) {
+			Operacion condiciones) {
 		super();
 		this.operaciones = operaciones;
 		this.condiciones = condiciones;
@@ -52,7 +52,7 @@ public class SentenciaMetodo_Hacermientras extends SentenciaMetodo
 	 * Este metodo permite obtener el valor del atributo condiciones
 	 * @return el condiciones
 	 */
-	public Condiciones getCondiciones() {
+	public Operacion getCondiciones() {
 		return condiciones;
 	}
 
@@ -60,7 +60,7 @@ public class SentenciaMetodo_Hacermientras extends SentenciaMetodo
 	 * Este metodo permite asignar un valor al atributo condiciones
 	 * @param condiciones se asigna a condiciones
 	 */
-	public void setCondiciones(Condiciones condiciones) {
+	public void setCondiciones(Operacion condiciones) {
 		this.condiciones = condiciones;
 	}
 }

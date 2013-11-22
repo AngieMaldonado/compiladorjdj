@@ -13,7 +13,7 @@ public class SentenciaMetodo_Mientras extends SentenciaMetodo
 	/**
 	 * Atributo que contiene el valor de condiciones dentro de la clase
 	*/
-	Condiciones condiciones;
+	Operacion condiciones;
 	
 	/**
 	 * Atributo que contiene el valor de cuerpoSentencia dentro de la clase
@@ -25,7 +25,7 @@ public class SentenciaMetodo_Mientras extends SentenciaMetodo
 	 * @param condiciones
 	 * @param cuerpoSentencia
 	 */
-	public SentenciaMetodo_Mientras(Condiciones condiciones,
+	public SentenciaMetodo_Mientras(Operacion condiciones,
 			SentenciasMetodo cuerpoSentencia) {
 		super();
 		this.condiciones = condiciones;
@@ -36,7 +36,7 @@ public class SentenciaMetodo_Mientras extends SentenciaMetodo
 	 * Este metodo permite obtener el valor del atributo condiciones
 	 * @return el condiciones
 	 */
-	public Condiciones getCondiciones() {
+	public Operacion getCondiciones() {
 		return condiciones;
 	}
 
@@ -44,7 +44,7 @@ public class SentenciaMetodo_Mientras extends SentenciaMetodo
 	 * Este metodo permite asignar un valor al atributo condiciones
 	 * @param condiciones se asigna a condiciones
 	 */
-	public void setCondiciones(Condiciones condiciones) {
+	public void setCondiciones(Operacion condiciones) {
 		this.condiciones = condiciones;
 	}
 
