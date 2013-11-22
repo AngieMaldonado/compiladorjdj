@@ -859,7 +859,7 @@ public class AnalizadorLexico
 		lenguaje="";
 		
 		//paquete
-		if(caracterActual=='P')
+		if(caracterActual=='p')
 		{
 			lenguaje+=caracterActual;
 			siguienteCaracter();
@@ -900,7 +900,7 @@ public class AnalizadorLexico
 		lenguaje="";
 		
 		//paquete
-		if(caracterActual=='I')
+		if(caracterActual=='i')
 		{
 			lenguaje+=caracterActual;
 			siguienteCaracter();
@@ -930,6 +930,7 @@ public class AnalizadorLexico
 									siguienteCaracter();
 									if(caracterActual=='r')
 									{
+										lenguaje+=caracterActual;
 										almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
 										siguienteCaracter();
 										return true;
@@ -968,9 +969,14 @@ public class AnalizadorLexico
 							if(caracterActual=='c')
 							{
 								lenguaje+=caracterActual;
-								almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
 								siguienteCaracter();
-								return true;
+								if(caracterActual=='o')
+								{
+									lenguaje+=caracterActual;
+									almacenarToken(lenguaje, "Palabra reservada", filaActual, columnaActual);
+									siguienteCaracter();
+									return true;
+								}
 							}
 						}
 					}
@@ -1020,7 +1026,7 @@ public class AnalizadorLexico
 		}
 		
 		atras(posicionAtras, filaIniToken, columnaInicialToken);
-		lenguaje="";
+//		lenguaje="";
 		return false;
 
 
