@@ -2,6 +2,8 @@ package co.edu.uniquindio.analizadorSintactico.logic;
 
 import java.util.List;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro
@@ -24,6 +26,27 @@ public class Parametros
 	public Parametros(List<Parametro> parametros) {
 		super();
 		this.parametros = parametros;
+	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la Parametros.java
+	 */
+	public Parametros(){}
+	
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("Parametros");
+		
+		if(parametros != null && parametros.size()>0)
+		{
+			DefaultMutableTreeNode raizParametros= new DefaultMutableTreeNode("VariosParametros");
+			
+			for (Parametro parametro: parametros) 
+			{
+				raizParametros.add(parametro.getArbolVisual());
+			}
+			miRaiz.add(raizParametros);
+		}
 	}
 
 	/**

@@ -14,7 +14,7 @@ public class Operacion
 {
 	/**
 	 * Atributo que contiene el valor de operador1 dentro de la clase
-	*/
+	*/	
 	Lenguaje operador1;
 	
 	/**
