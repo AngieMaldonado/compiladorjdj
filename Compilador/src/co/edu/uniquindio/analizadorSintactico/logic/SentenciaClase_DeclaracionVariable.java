@@ -50,8 +50,8 @@ public class SentenciaClase_DeclaracionVariable extends SentenciaClase
 	 */
 	public SentenciaClase_DeclaracionVariable() {}
 	
-	/**
-	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaClase#getArbolVisual()
 	 */
 	public DefaultMutableTreeNode getArbolVisual()
 	{

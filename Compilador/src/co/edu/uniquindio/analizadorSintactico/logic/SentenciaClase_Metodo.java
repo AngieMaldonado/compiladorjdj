@@ -63,8 +63,8 @@ public class SentenciaClase_Metodo extends SentenciaClase
 	 */
 	public SentenciaClase_Metodo(){}
 
-	/**
-	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaClase#getArbolVisual()
 	 */
 	public DefaultMutableTreeNode getArbolVisual()
 	{
@@ -74,6 +74,8 @@ public class SentenciaClase_Metodo extends SentenciaClase
 		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + identificadorMetodo.getToken()));
 		miRaiz.add(parametros.getArbolVisual());
 		miRaiz.add(cuerpoMetodo.getArbolVisual());
+		
+		return miRaiz;
 	}
 	
 	/**

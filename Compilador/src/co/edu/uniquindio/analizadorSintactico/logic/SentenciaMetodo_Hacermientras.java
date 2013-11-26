@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro
@@ -30,6 +32,25 @@ public class SentenciaMetodo_Hacermientras extends SentenciaMetodo
 		super();
 		this.operaciones = operaciones;
 		this.condiciones = condiciones;
+	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaMetodo_Hacermientras.java
+	 */
+	public SentenciaMetodo_Hacermientras() {
+	
+	}
+	
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaMetodo#getArbolVisual()
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Hacermientras");
+		miRaiz.add(operaciones.getArbolVisual());
+		miRaiz.add(condiciones.getArbolVisual());
+		
+		return miRaiz;
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro
@@ -44,6 +46,27 @@ public class SentenciaMetodo_Ciclo extends SentenciaMetodo
 		this.condicion = condicion;
 		this.iteracion = iteracion;
 		this.operaciones = operaciones;
+	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaMetodo_Ciclo.java
+	 */
+	public SentenciaMetodo_Ciclo() {
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaMetodo#getArbolVisual()
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("Ciclo");
+		miRaiz.add(asignacion.getArbolVisual());
+		miRaiz.add(condicion.getArbolVisual());
+		miRaiz.add(iteracion.getArbolVisual());
+		miRaiz.add(operaciones.getArbolVisual());
+		
+		return miRaiz;
 	}
 
 	/**

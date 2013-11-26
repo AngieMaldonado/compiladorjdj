@@ -33,6 +33,9 @@ public class Parametros
 	 */
 	public Parametros(){}
 	
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
 	public DefaultMutableTreeNode getArbolVisual()
 	{
 		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("Parametros");
@@ -47,6 +50,8 @@ public class Parametros
 			}
 			miRaiz.add(raizParametros);
 		}
+		
+		return miRaiz;
 	}
 
 	/**

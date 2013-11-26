@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -40,6 +42,26 @@ public class Operacion
 		this.operador2 = operador2;
 	}
 
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la Operacion.java
+	 */
+	public Operacion() {
+		
+	}
+	
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Operacion");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+ operador1.getToken()));
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+ operacion.getToken()));
+		miRaiz.add(operador2.getArbolVisual());
+		
+		return miRaiz;
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo operador1
 	 * @return el operador1

@@ -41,6 +41,18 @@ public class SentenciaMetodo_Sino extends SentenciaMetodo
 	 */
 	public SentenciaMetodo_Sino(){}
 
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaMetodo#getArbolVisual()
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("Sino");
+		miRaiz.add(condiciones.getArbolVisual());
+		miRaiz.add(operaciones.getArbolVisual());
+		
+		return miRaiz;
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo condiciones
 	 * @return el condiciones

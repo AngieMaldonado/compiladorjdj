@@ -1,5 +1,8 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.jws.Oneway;
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro
@@ -32,6 +35,25 @@ public class SentenciaMetodo_Mientras extends SentenciaMetodo
 		this.cuerpoSentencia = cuerpoSentencia;
 	}
 
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaMetodo_Mientras.java
+	 */
+	public SentenciaMetodo_Mientras() {
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaMetodo#getArbolVisual()
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Mientras");
+		miRaiz.add(condiciones.getArbolVisual());
+		miRaiz.add(cuerpoSentencia.getArbolVisual());
+		
+		return miRaiz;
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo condiciones
 	 * @return el condiciones

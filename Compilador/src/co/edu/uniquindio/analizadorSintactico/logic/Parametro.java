@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -32,7 +34,24 @@ public class Parametro
 		this.tipoParametro = tipoParametro;
 		this.identificadorParametro = identificadorParametro;
 	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la Parametro.java
+	 */
+	public Parametro(){}
 
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Parametro");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+ tipoParametro.getToken()));
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+ identificadorParametro.getToken()));
+		
+		return miRaiz;
+	}
+	
 	/**
 	 * Este metodo permite obtener el valor del atributo tipoParametro
 	 * @return el tipoParametro

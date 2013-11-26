@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -32,6 +34,25 @@ public class SentenciaMetodo_Si extends SentenciaMetodo
 		super();
 		this.condiciones = condiciones;
 		this.operaciones = operaciones;
+	}
+	
+	/**
+	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaMetodo_Si.java
+	 */
+	public SentenciaMetodo_Si() {
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaMetodo#getArbolVisual()
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("Si");
+		miRaiz.add(condiciones.getArbolVisual());
+		miRaiz.add(operaciones.getArbolVisual());
+		
+		return miRaiz;
 	}
 
 	/**

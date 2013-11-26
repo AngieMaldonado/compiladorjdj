@@ -41,8 +41,8 @@ public class SentenciaMetodo_DeclaracionVariable extends SentenciaMetodo
 	 */
 	public SentenciaMetodo_DeclaracionVariable(){}
 	
-	/**
-	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaMetodo#getArbolVisual()
 	 */
 	public DefaultMutableTreeNode getArbolVisual()
 	{
