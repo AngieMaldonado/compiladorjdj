@@ -243,4 +243,33 @@ public class AnalizadorSintactico
 		
 		return null;
 	}
+	
+	public SentenciasClase esSentenciasClase()
+	{
+		ArrayList<SentenciaClase> sentenciasClases= new ArrayList<SentenciaClase>();
+		
+		SentenciaClase sentenciaClase = esSentenciaClase();
+		
+		while(sentenciaClase!=null)
+		{
+			sentenciasClases.add(sentenciaClase);
+			
+		}
+		
+		return new SentenciasClase(sentenciasClases);
+	}
+	
+	public SentenciaClase esSentenciaClase()
+	{
+		if(tokenActual.getToken().equals("publico") || tokenActual.getToken().equals("privado"))
+		{
+			
+		}
+		
+		if(tokenActual.getToken()=="cadena" || tokenActual.getToken()=="caracter" || tokenActual.getToken()=="racional"
+				|| tokenActual.getToken()=="entero" || tokenActual.getToken()=="bool")
+		{
+			
+		}
+	}
 }

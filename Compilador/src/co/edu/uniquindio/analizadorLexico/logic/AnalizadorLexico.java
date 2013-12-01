@@ -1439,9 +1439,89 @@ public class AnalizadorLexico
 		return false;
 
 	}
+	
+/**
+<	 * Este metodo define como seran establecidas las reglas de como sera escrito un identificador de clase
+	 * la expresion regular es ¬L(DUL)^*¬
+	 */
+	public boolean identificadorPaquete()
+	{
+		int posicionAtras = posicionActual;
+		int filaIniToken = filaActual;
+		int columnaInicialToken = columnaActual;
+		String lenguaje =  "";
+
+		if(caracterActual=='¬')
+		{
+			lenguaje+=caracterActual;
+			siguienteCaracter();
+			if(Character.isLetter(caracterActual))
+			{
+				lenguaje+=caracterActual;
+				siguienteCaracter();
+				while(Character.isLetter(caracterActual)||Character.isDigit(caracterActual))
+				{
+					lenguaje+=caracterActual;
+					siguienteCaracter();
+				}
+
+				if(caracterActual=='¬')
+				{
+					lenguaje+=caracterActual;
+					siguienteCaracter();
+					almacenarToken(lenguaje, "Identificador de paquete", filaIniToken, columnaInicialToken);
+
+					return true;
+				}
+
+			}
+		}
+		atras(posicionAtras, filaIniToken, columnaInicialToken);
+		return false;
+	}	
 
 	/**
 	 * Este metodo define como seran establecidas las reglas de como sera escrito un identificador de clase
+	 * la expresion regular es ~L(DUL)^*~
+	 */
+	public boolean identificadorImportacion()
+	{
+		int posicionAtras = posicionActual;
+		int filaIniToken = filaActual;
+		int columnaInicialToken = columnaActual;
+		String lenguaje =  "";
+
+		if(caracterActual=='~')
+		{
+			lenguaje+=caracterActual;
+			siguienteCaracter();
+			if(Character.isLetter(caracterActual))
+			{
+				lenguaje+=caracterActual;
+				siguienteCaracter();
+				while(Character.isLetter(caracterActual)||Character.isDigit(caracterActual))
+				{
+					lenguaje+=caracterActual;
+					siguienteCaracter();
+				}
+
+				if(caracterActual=='~')
+				{
+					lenguaje+=caracterActual;
+					siguienteCaracter();
+					almacenarToken(lenguaje, "Identificador de Import", filaIniToken, columnaInicialToken);
+
+					return true;
+				}
+
+			}
+		}
+		atras(posicionAtras, filaIniToken, columnaInicialToken);
+		return false;
+	}
+	
+	/**
+<	 * Este metodo define como seran establecidas las reglas de como sera escrito un identificador de clase
 	 * la expresion regular es #L(DUL)^*#
 	 */
 	public boolean identificadorClase()
