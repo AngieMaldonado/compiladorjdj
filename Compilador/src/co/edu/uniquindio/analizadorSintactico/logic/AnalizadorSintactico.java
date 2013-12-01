@@ -170,7 +170,7 @@ public class AnalizadorSintactico
 		{
 			return null;
 		}
-		if(tokenActual.getTipoToken().equals("identificador de importacion"))
+		if(tokenActual.getTipoToken().equals("Identificador de Import"))
 		{
 			identificador = tokenActual;
 			darSiguienteToken();
@@ -261,15 +261,127 @@ public class AnalizadorSintactico
 	
 	public SentenciaClase esSentenciaClase()
 	{
+		Lenguaje tipoAcceso= null;
+		Lenguaje tipoVariable=null;
+		Lenguaje identificador=null;
+		
 		if(tokenActual.getToken().equals("publico") || tokenActual.getToken().equals("privado"))
 		{
-			
+			tipoAcceso= tokenActual;
+			darSiguienteToken();
+		}
+		else
+		{
+			return null;
 		}
 		
-		if(tokenActual.getToken()=="cadena" || tokenActual.getToken()=="caracter" || tokenActual.getToken()=="racional"
-				|| tokenActual.getToken()=="entero" || tokenActual.getToken()=="bool")
+		if(tokenActual.getToken().equals("cadena") || tokenActual.getToken().equals("caracter") || tokenActual.getToken().equals("racional")
+				|| tokenActual.getToken().equals("entero") || tokenActual.getToken().equals("bool"))
 		{
-			
+			tipoVariable=tokenActual;
+			darSiguienteToken();
 		}
+		else
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getTipoToken().equals("Identificador de atributo"))
+		{
+			ArrayList<Lenguaje> identificadoresVaribles= new ArrayList<Lenguaje>();
+			identificador=tokenActual;
+			
+			identificadoresVaribles.add(identificador);
+			
+			darSiguienteToken();
+			
+			while(tokenActual.getToken().equals(",") && !tokenActual.getToken().equals("."))
+			{
+				darSiguienteToken();
+				if(tokenActual.getTipoToken().equals("Identificador de atributo"))
+				{
+					identificadoresVaribles.add(identificador);
+					darSiguienteToken();
+				}
+				else
+				{
+					//manejo de error
+				}
+			}
+			
+			if(tokenActual.getToken().equals("."))
+			{
+				darSiguienteToken();
+				return new SentenciaClase_DeclaracionVariable(tipoAcceso, tipoVariable, identificadoresVaribles);
+			}
+			else
+			{
+				//manejo de error
+			}
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getTipoToken().equals("Identificador de metodo"))
+		{
+			identificador=tokenActual;
+			darSiguienteToken();
+			
+			if(tokenActual.getToken().equals("("))
+			{
+				darSiguienteToken();
+			}
+			else
+			{
+				//manejo de error
+			}
+			
+			Parametros parametros= esParametros();
+			
+			if(parametros==null)
+			{
+				//manejo de error
+			}
+			
+			if(tokenActual.getToken().equals(")"))
+			{
+				darSiguienteToken();
+			}
+			else
+			{
+				//manejo de error
+			}
+			
+			if(tokenActual.getToken().equals("{"))
+			{
+				darSiguienteToken();
+			}
+			else
+			{
+				//manejo de error
+			}
+			
+			SentenciasMetodo sentenciasClase= esSentenciasClase();
+			
+			if(sentenciasClase==null)
+			{
+				//manejo de error
+			}
+			
+			if(tokenActual.getToken().equals("("))
+			{
+				darSiguienteToken();
+				return new SentenciaClase_Metodo(tipoAcceso, tipoVariable, identificador, parametros, sentenciasClase);
+			}
+			else
+			{
+				//manejo de error
+			}
+			
+			return null;
+		}
+		
 	}
 }
