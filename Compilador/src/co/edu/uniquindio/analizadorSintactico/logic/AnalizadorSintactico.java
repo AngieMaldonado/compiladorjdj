@@ -4,6 +4,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 import co.edu.uniquindio.analizadorLexico.logic.AnalizadorLexico;
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
@@ -52,6 +53,14 @@ public class AnalizadorSintactico
 
 	}
 	
+//	public void modoPanicoTerminal()
+//	{
+//		while(!tokenActual.getToken().equals(".") && indice<listaSimbolosLexicos.size())
+//		{
+//			darSiguienteToken();
+//		}
+//	}
+	
 	/**
 	 * Metodo usado para avanzar de token
 	 */
@@ -72,7 +81,7 @@ public class AnalizadorSintactico
 	 * metodo para realizar el bactraking
 	 * @param posBT posicion inicial
 	 */
-	public void realizarBactracking(int posBT) 
+	public void realizarBacktracking(int posBT) 
 	{ 
 		indice = posBT; 
 		tokenActual = listaSimbolosLexicos.get(indice); 
@@ -138,7 +147,7 @@ public class AnalizadorSintactico
 		}
 		else
 		{
-			//manejo de error
+			//modoPanicoTerminal();
 		}
 		
 		return null;
@@ -363,25 +372,476 @@ public class AnalizadorSintactico
 				//manejo de error
 			}
 			
-			SentenciasMetodo sentenciasClase= esSentenciasClase();
+			SentenciasMetodo sentenciasMetodo= esSentenciasMetodo();
 			
-			if(sentenciasClase==null)
+			if(sentenciasMetodo==null)
 			{
 				//manejo de error
 			}
 			
-			if(tokenActual.getToken().equals("("))
+			if(tokenActual.getToken().equals("}"))
 			{
 				darSiguienteToken();
-				return new SentenciaClase_Metodo(tipoAcceso, tipoVariable, identificador, parametros, sentenciasClase);
+				return new SentenciaClase_Metodo(tipoAcceso, tipoVariable, identificador, parametros, sentenciasMetodo);
 			}
 			else
 			{
 				//manejo de error
 			}
-			
-			return null;
+		}
+		else
+		{
+			//manejo de error
 		}
 		
+		return null;
+	}
+	
+	public Parametros esParametros()
+	{
+		ArrayList<Parametro> parametros= new ArrayList<Parametro>();
+		Parametro parametro= esParametro();
+		
+		while (parametro!=null) 
+		{
+			parametros.add(parametro);
+			
+			if(tokenActual.getToken().equals(","))
+			{
+				darSiguienteToken();
+			}
+			else
+			{
+				//manejo de error
+			}
+		}
+		return new Parametros(parametros);
+	}
+	
+	public Parametro esParametro()
+	{
+		Lenguaje tipo=null;
+		Lenguaje identificador=null;
+		
+		if(tokenActual.getToken().equals("cadena") || tokenActual.getToken().equals("caracter") || tokenActual.getToken().equals("racional")
+				|| tokenActual.getToken().equals("entero") || tokenActual.getToken().equals("bool"))
+		{
+			tipo=tokenActual;
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getTipoToken().equals("Identificador de atributo"))
+		{
+			darSiguienteToken();
+			return new Parametro(tipo, identificador);
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		return null;
+	}
+	
+	public SentenciasMetodo esSentenciasMetodo()
+	{
+		ArrayList<SentenciaMetodo> sentenciasMetodos= new ArrayList<SentenciaMetodo>();
+		
+		SentenciaMetodo sentenciaMetodo = esSentenciaMetodo();
+		
+		while(sentenciaMetodo!=null)
+		{
+			sentenciasMetodos.add(sentenciaMetodo);
+			
+		}
+		
+		return new SentenciasMetodo(sentenciasMetodos);
+	}
+	
+	public SentenciaMetodo esSentenciaMetodo()
+	{
+		if(tokenActual.getToken().equals("SI"))
+		{
+			darSiguienteToken();
+			return esSi();
+		}
+		if(tokenActual.getToken().equals("SINO"))
+		{
+			
+		}
+		if(tokenActual.getToken().equals("DELOCONTRARIO"))
+		{
+			
+		}
+		if(tokenActual.getToken().equals("CICLO"))
+		{
+			
+		}
+		if(tokenActual.getToken().equals("MIENTRAS"))
+		{
+			
+		}
+		if(tokenActual.getToken().equals("HACER"))
+		{
+			
+		}
+		
+		return null;
+	}
+	
+	public SentenciaMetodo_Si esSi()
+	{
+		if(tokenActual.getToken().equals("("))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		Operacion operacion= esOperacion();
+		
+		if(operacion==null)
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals(")"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals("{"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		SentenciasMetodo sentenciasMetodo= esSentenciasMetodo();
+		
+		if(sentenciasMetodo==null)
+		{
+			//mnejo de error
+		}
+		
+		if(tokenActual.getToken().equals("}"))
+		{
+			darSiguienteToken();
+			return new SentenciaMetodo_Si(operacion, sentenciasMetodo);
+		}
+		else
+		{
+			//manejo de error
+		}
+		return null;
+	}
+	
+	public SentenciaMetodo_Sino esSino()
+	{
+		if(tokenActual.getToken().equals("("))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		Operacion operacion= esOperacion();
+		
+		if(operacion==null)
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals(")"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals("{"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		SentenciasMetodo sentenciasMetodo= esSentenciasMetodo();
+		
+		if(sentenciasMetodo==null)
+		{
+			//mnejo de error
+		}
+		
+		if(tokenActual.getToken().equals("}"))
+		{
+			darSiguienteToken();
+			return new SentenciaMetodo_Sino(operacion, sentenciasMetodo);
+		}
+		else
+		{
+			//manejo de error
+		}
+		return null;
+	}
+	
+	public SentenciaMetodo_Delocontrario esDelocontrario()
+	{
+	
+		if(tokenActual.getToken().equals("{"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		SentenciasMetodo sentenciasMetodo= esSentenciasMetodo();
+		
+		if(sentenciasMetodo==null)
+		{
+			//mnejo de error
+		}
+		
+		if(tokenActual.getToken().equals("}"))
+		{
+			darSiguienteToken();
+			return new SentenciaMetodo_Delocontrario(sentenciasMetodo);
+		}
+		else
+		{
+			//manejo de error
+		}
+		return null;
+	}
+	
+	public SentenciaMetodo_Ciclo esCiclo()
+	{
+		if(tokenActual.getToken().equals("("))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		Operacion asignacion= esOperacion();
+		
+		if(asignacion==null)
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals(";"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		Operacion condicion= esOperacion();
+		
+		if(condicion==null)
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals(";"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		Operacion iteracion= esOperacion();
+		
+		if(iteracion==null)
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals(")"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals("{"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		SentenciasMetodo sentenciasMetodo= esSentenciasMetodo();
+		
+		if(sentenciasMetodo==null)
+		{
+			//mnejo de error
+		}
+		
+		if(tokenActual.getToken().equals("}"))
+		{
+			darSiguienteToken();
+			return new SentenciaMetodo_Ciclo(asignacion, condicion, iteracion, sentenciasMetodo);
+		}
+		else
+		{
+			//manejo de error
+		}
+		return null;
+	}
+	
+	public SentenciaMetodo_Mientras esMientras()
+	{
+		if(tokenActual.getToken().equals("("))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		Operacion condicion= esOperacion();
+		
+		if(condicion==null)
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals(")"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals("{"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		SentenciasMetodo cuerpoSentencia= esSentenciasMetodo();
+		
+		if(cuerpoSentencia==null)
+		{
+			//mnejo de error
+		}
+		
+		if(tokenActual.getToken().equals("}"))
+		{
+			darSiguienteToken();
+			return new SentenciaMetodo_Mientras(condicion, cuerpoSentencia);
+		}
+		else
+		{
+			//manejo de error
+		}
+		return null;
+	}
+	
+	public SentenciaMetodo_Hacermientras esHacermientras()
+	{
+		if(tokenActual.getToken().equals("{"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		SentenciasMetodo cuerpoSentencia= esSentenciasMetodo();
+		
+		if(cuerpoSentencia==null)
+		{
+			//mnejo de error
+		}
+		
+		if(tokenActual.getToken().equals("}"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals("MIENTRAS"))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals("("))
+		{
+			darSiguienteToken();
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		Operacion condicion= esOperacion();
+		
+		if(condicion==null)
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals(")"))
+		{
+			darSiguienteToken();
+			return new SentenciaMetodo_Hacermientras(cuerpoSentencia, condicion);
+		}
+		else
+		{
+			//manejo de error
+		}
+		return null;
+	}
+	
+	public Operacion esOperacion()
+	{
+		return null;
 	}
 }
