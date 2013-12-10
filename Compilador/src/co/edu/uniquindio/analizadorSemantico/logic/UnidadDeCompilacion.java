@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSemantico.logic;
 
+import java.util.ArrayList;
+
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro
@@ -13,9 +15,19 @@ public class UnidadDeCompilacion {
 	/**
 	 * @param tablaSimbolos
 	 */
-	public static void llenarTabla(TablaSimbolos tablaSimbolos) 
+	public void llenarTabla(TablaSimbolos tablaSimbolos) 
 	{
 		// TODO: COMPLETAR
+	}
+
+	/**
+	 * @param tablaSimbolos
+	 * @param errores
+	 */
+	public void analizarSemantica(TablaSimbolos tablaSimbolos,
+			ArrayList<Error> errores) {
+		// TODO : COMPLETAR
+		
 	}
 
 }

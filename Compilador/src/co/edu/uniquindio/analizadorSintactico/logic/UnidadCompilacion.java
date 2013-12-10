@@ -1,10 +1,6 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
-import java.util.ArrayList;
-
 import javax.swing.tree.DefaultMutableTreeNode;
-
-import co.edu.uniquindio.analizadorSemantico.logic.TablaSimbolos;
 
 /**
  * @author Jorge Hernan Arcila Alzate
@@ -110,14 +106,5 @@ public class UnidadCompilacion
 	 */
 	public void setDeclaracionClase(Clase declaracionClase) {
 		this.declaracionClase = declaracionClase;
-	}
-	
-	/**
-	 * @param tablaSimbolos
-	 * @param errores
-	 */
-	public void analizarSemantica(TablaSimbolos tablaSimbolos,
-			ArrayList<Error> errores) {
-		// TODO : COMPLETAR
 	}
 }

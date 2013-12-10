@@ -3,7 +3,7 @@ package co.edu.uniquindio.analizadorSemantico.logic;
 import java.util.ArrayList;
 
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
-import co.edu.uniquindio.analizadorSintactico.logic.UnidadCompilacion;
+import co.edu.uniquindio.analizadorSemantico.logic.UnidadDeCompilacion;
 
 /**
  * @author Jorge Hernan Arcila Alzate
@@ -16,7 +16,7 @@ import co.edu.uniquindio.analizadorSintactico.logic.UnidadCompilacion;
 public class AnalizadorSemantico 
 {
 	private TablaSimbolos tablaSimbolos;  
-	private UnidadCompilacion unidadDeCompilacion;  
+	private UnidadDeCompilacion unidadDeCompilacion;  
 	private ArrayList<Error> errores; 
 
 	public static String calcularTipo(String tipo1, String tipo2)
@@ -45,7 +45,7 @@ public class AnalizadorSemantico
 	public void analizar()     
 	{   
 		tablaSimbolos = new TablaSimbolos();   
-		UnidadDeCompilacion.llenarTabla(tablaSimbolos);   
+		unidadDeCompilacion.llenarTabla(tablaSimbolos);   
 		tablaSimbolos.imprimir();      
 		errores = new ArrayList<Error>();   
 		unidadDeCompilacion.analizarSemantica(tablaSimbolos, errores);   
