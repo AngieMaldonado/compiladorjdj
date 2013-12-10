@@ -1,4 +1,4 @@
-package co.edu.uniquindio.analizadorLexico.vista;
+package co.edu.uniquindio.vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

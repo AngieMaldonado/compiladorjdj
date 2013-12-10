@@ -1,4 +1,4 @@
-package co.edu.uniquindio.analizadorLexico.vista;
+package co.edu.uniquindio.vista;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -6,10 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -17,7 +15,6 @@ import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
-import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -37,6 +34,7 @@ import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
+@SuppressWarnings("serial")
 public class jPanelLexico extends javax.swing.JPanel implements ActionListener{
 	
 	private JPanel jPanelTextoIngresado;

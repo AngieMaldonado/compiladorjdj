@@ -1,4 +1,4 @@
-package co.edu.uniquindio.analizadorLexico.vista;
+package co.edu.uniquindio.vista;
 
 import java.awt.Dimension;
 
@@ -20,6 +20,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 * THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
+@SuppressWarnings("serial")
 public class JPanelSintactico extends javax.swing.JPanel {
 
 	private JTree arbolGrafico;

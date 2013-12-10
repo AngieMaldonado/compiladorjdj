@@ -10,4 +10,4 @@
  * maneja su información
  */
 
-package co.edu.uniquindio.analizadorLexico.vista;
+package co.edu.uniquindio.vista;

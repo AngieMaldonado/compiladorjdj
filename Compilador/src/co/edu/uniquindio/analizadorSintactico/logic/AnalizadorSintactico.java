@@ -4,9 +4,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
 import java.util.ArrayList;
-import java.util.concurrent.Semaphore;
 
-import co.edu.uniquindio.analizadorLexico.logic.AnalizadorLexico;
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**

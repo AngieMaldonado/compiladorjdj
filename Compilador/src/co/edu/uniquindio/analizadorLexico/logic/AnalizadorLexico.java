@@ -1451,7 +1451,7 @@ public class AnalizadorLexico
 		int columnaInicialToken = columnaActual;
 		String lenguaje =  "";
 
-		if(caracterActual=='Â¬')
+		if(caracterActual=='¬')
 		{
 			lenguaje+=caracterActual;
 			siguienteCaracter();
@@ -1465,7 +1465,7 @@ public class AnalizadorLexico
 					siguienteCaracter();
 				}
 
-				if(caracterActual=='Â¬')
+				if(caracterActual=='¬')
 				{
 					lenguaje+=caracterActual;
 					siguienteCaracter();
