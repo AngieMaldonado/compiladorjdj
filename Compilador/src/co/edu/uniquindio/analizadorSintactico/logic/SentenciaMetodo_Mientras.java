@@ -1,6 +1,5 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
-import javax.jws.Oneway;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**

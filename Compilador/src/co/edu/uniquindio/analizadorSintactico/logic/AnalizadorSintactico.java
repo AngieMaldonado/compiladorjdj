@@ -48,7 +48,6 @@ public class AnalizadorSintactico
 		indice = 0; 
 		tokenActual = listaSimbolosLexicos.get(indice); 
 		unidadDeCompilacion = esUnidadDeCompilacion(); 
-
 	}
 	
 //	public void modoPanicoTerminal()
