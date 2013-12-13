@@ -69,4 +69,13 @@ public class SentenciasMetodo
 	public void setSentenciasMetodo(List<SentenciaMetodo> sentenciasMetodo) {
 		this.sentenciasMetodo = sentenciasMetodo;
 	}
+
+	/**
+	 * El codigo en java
+	 * @return java code
+	 */
+	public String getJavaCode() 
+	{
+		return null;
+	}
 }

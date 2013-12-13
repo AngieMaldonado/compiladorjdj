@@ -2,8 +2,6 @@ package co.edu.uniquindio.analizadorSintactico.logic;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
-
 /**
  * @author Jorge Hernan Arcila Alzate
  * @author Dival Mauricio Hoyos Castro
@@ -14,10 +12,6 @@ import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
  */
 public class SentenciaMetodo_Retorno extends SentenciaMetodo
 {
-	/**
-	 * Atributo que contiene el valor de variable dentro de la clase
-	*/
-	private Lenguaje variable;
 	
 	/**
 	 * Atributo que contiene el valor de valor dentro de la clase
@@ -26,29 +20,11 @@ public class SentenciaMetodo_Retorno extends SentenciaMetodo
 
 	/**
 	 * Metodo que se encarga de reservar memoria y luego instanciar la Retorno.java
-	 * @param variable
 	 * @param valor
 	 */
-	public SentenciaMetodo_Retorno(Lenguaje variable, Operacion valor) {
+	public SentenciaMetodo_Retorno(Operacion valor) {
 		super();
-		this.variable = variable;
 		this.valor = valor;
-	}
-	
-	/**
-	 * Este metodo permite obtener el valor del atributo variable
-	 * @return el variable
-	 */
-	public Lenguaje getVariable() {
-		return variable;
-	}
-
-	/**
-	 * Este metodo permite asignar un valor al atributo variable
-	 * @param variable se asigna a variable
-	 */
-	public void setVariable(Lenguaje variable) {
-		this.variable = variable;
 	}
 
 	/**

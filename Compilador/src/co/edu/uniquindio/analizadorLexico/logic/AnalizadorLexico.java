@@ -1290,6 +1290,16 @@ public class AnalizadorLexico
 			return true;
 		}
 		atras(posicionParaBactraking, filaIniToken, columnaInicialToken);
+		
+//		separador de atributos
+		if (caracterActual == ',') {
+			siguienteCaracter();
+			almacenarToken(lexema, "Separador", filaIniToken,
+					columnaInicialToken);
+			return true;
+		}
+
+		atras(posicionParaBactraking, filaIniToken, columnaInicialToken);
 
 		//operador aritmetico modulo
 		if (caracterActual == '%') {
@@ -1785,7 +1795,7 @@ public class AnalizadorLexico
 		{
 			lenguaje+=caracterActual;
 			siguienteCaracter();
-			almacenarToken(lenguaje, "Caracter", filaIniToken, columnaInicialToken);
+			almacenarToken(lenguaje, "caracter", filaIniToken, columnaInicialToken);
 			return true;
 		}				
 		atras(posicionParaBactraking, filaIniToken, columnaInicialToken);
@@ -1824,7 +1834,7 @@ public class AnalizadorLexico
 						lenguaje += caracterActual;
 						siguienteCaracter();
 					}
-					almacenarToken(lenguaje, "Racional", filaIniToken, columnaInicialToken);
+					almacenarToken(lenguaje, "racional", filaIniToken, columnaInicialToken);
 					return true;
 				}
 			}
@@ -1906,6 +1916,16 @@ public class AnalizadorLexico
 
 		while (caracterActual != fin)
 		{
+			if(identificadorPaquete())
+				continue;
+			if(identificadorImportacion())
+				continue;
+			if(identificadorClase())
+				continue;
+			if(identificadorMetodo())
+				continue;
+			if(identificadorAtributo())
+				continue;
 			if (palabraReservada())
 				continue;
 			if (operadorRelacional())
@@ -1919,12 +1939,6 @@ public class AnalizadorLexico
 			if (saltoLinea())
 				continue;
 			if (finDeLinea())
-				continue;
-			if(identificadorClase())
-				continue;
-			if(identificadorMetodo())
-				continue;
-			if(identificadorAtributo())
 				continue;
 			if (definicionClase())
 				continue;

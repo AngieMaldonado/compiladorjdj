@@ -16,7 +16,7 @@ public class SentenciasClase
 {
 	/**
 	 * Atributo que contiene el valor de sentencias dentro de la clase
-	*/
+	 */
 	private List<SentenciaClase> sentencias;
 
 	/**
@@ -32,28 +32,7 @@ public class SentenciasClase
 	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciasClase.java
 	 */
 	public SentenciasClase(){}
-	
-	/**
-	 * @return miRaiz la cual contendra el arbol grafico de esta clase
-	 */
-	public DefaultMutableTreeNode getArbolVisual()
-	{
-		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("SentenciasClase");
-			
-			if(sentencias !=null && sentencias.size()>0)
-			{
-				DefaultMutableTreeNode raizSentencia= new DefaultMutableTreeNode("Imports");
-				
-				for(SentenciaClase sentenciaclase : sentencias)
-				{
-					raizSentencia.add(sentenciaclase.getArbolVisual());
-				}
-				
-				miRaiz.add(raizSentencia);
-			}		
-		return miRaiz;
-	}
-	
+
 	/**
 	 * Este metodo permite obtener el valor del atributo sentencias
 	 * @return el sentencias
@@ -68,5 +47,38 @@ public class SentenciasClase
 	 */
 	public void setSentencias(List<SentenciaClase> sentencias) {
 		this.sentencias = sentencias;
+	}
+
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("SentenciasClase");
+	
+		if(sentencias !=null && sentencias.size()>0)
+		{
+			//				DefaultMutableTreeNode raizSentencia= new DefaultMutableTreeNode("Imports");
+	
+			for(SentenciaClase sentenciaclase : sentencias)
+			{
+				miRaiz.add(sentenciaclase.getArbolVisual());
+			}
+	
+			//				miRaiz.add(raizSentencia);
+		}		
+		return miRaiz;
+	}
+	
+	public String getJavaCode()
+	{
+		String ret = null;
+		
+		for (SentenciaClase sc : sentencias) 
+		{
+			ret += sc.getJavaCode()+"\n";
+		}
+		
+		return ret;
 	}
 }

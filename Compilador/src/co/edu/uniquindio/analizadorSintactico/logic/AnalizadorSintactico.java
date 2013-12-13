@@ -5,6 +5,8 @@ package co.edu.uniquindio.analizadorSintactico.logic;
 
 import java.util.ArrayList;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -38,29 +40,97 @@ public class AnalizadorSintactico
 	private UnidadCompilacion unidadDeCompilacion;
 	
 	/**
+	 * Atributo que contiene el valor de listaErroresSintacticos dentro de la clase
+	*/
+	private ArrayList<ErrorSintactico> listaErroresSintacticos;
+	
+	
+	private final String ERROR_NO_TERMINAL = "Simbolo terminal '.' no encontrado";
+	private final String ERROR_PARENTESIS_APERTURA = "Simbolo '(' no encontrado";
+	private final String ERROR_PARENTESIS_CIERRE = "Simbolo ')' no encontrado";
+	private final String ERROR_LLAVE_APERTURA = "Simvolo '{' no encontrado";
+	private final String ERROR_LLAVE_CIERRE = "Simbolo '}' no encontrado";
+	private final String ERROR_NO_IDENTIFICADOR = "identificador no encontrado";
+	private final String ERROR_NO_PALABRA_RESERVADA = "No se encontró la palabra reservada indicada";
+	private final String ERROR_NO_PARENTESIS = "no se encontraron '(', ni ')')";
+	private final String ERROR_VARIABLE_CLASE = "Error al crear la variable de clase";
+	
+	/**
 	 * Metodo que se encarga de reservar memoria y luego instanciar la AnalizadorSintactico.java
 	 * @param listasimbolos la cual es la que le envia el analizador lexico al sintactico
 	 */
 	public AnalizadorSintactico(ArrayList<Lenguaje> listasimbolos)
 	{
 		listaSimbolosLexicos=listasimbolos;
-//		listaErroresSintacticos = new ArrayList<ErrorSintactico>(); 
+		listaErroresSintacticos = new ArrayList<ErrorSintactico>(); 
 		indice = 0; 
 		tokenActual = listaSimbolosLexicos.get(indice); 
 		unidadDeCompilacion = esUnidadDeCompilacion(); 
+
 	}
 	
-//	public void modoPanicoTerminal()
-//	{
-//		while(!tokenActual.getToken().equals(".") && indice<listaSimbolosLexicos.size())
-//		{
-//			darSiguienteToken();
-//		}
-//	}
+	public void almacenarErrorSintactico(String mensaje) {
+
+			ErrorSintactico error = new ErrorSintactico(mensaje, tokenActual.getFila(), tokenActual.getColumna());
+			listaErroresSintacticos.add(error);
+	}
+	
+	public void almacenarErrorSintactico(Class<?> clase) {
+
+
+			ErrorSintactico error = new ErrorSintactico("No se pudo crear el/la "+ clase.getSimpleName(), tokenActual.getFila(), tokenActual.getColumna());
+			listaErroresSintacticos.add(error);
+
+	}
+	
+	public void modoPanicoTerminal()
+	{
+		while(!tokenActual.getToken().equals(".") && indice<listaSimbolosLexicos.size())
+		{
+			darSiguienteToken();
+		}
+	}
+	
+	public void modoPanicoLlaveCierre()
+	{
+		while(!tokenActual.getToken().equals("}") && indice<listaSimbolosLexicos.size())
+		{
+			darSiguienteToken();
+		}
+	}
+	
+	private void recuperacionParentesisCierre(String mensaje) {
+
+		almacenarErrorSintactico(mensaje);
+	}
+
+	private void recuperacionParentesisApertura(String mensaje) {
+
+		almacenarErrorSintactico(mensaje);
+	}
+
+	private void recuperacionLLaveApertura(String mensaje) {
+
+		almacenarErrorSintactico(mensaje);
+	}
+
+	private void recuperacionTerminalSentencia(String mensaje) {
+
+		almacenarErrorSintactico(mensaje);
+	}
 	
 	/**
 	 * Metodo usado para avanzar de token
 	 */
+	
+	public DefaultMutableTreeNode getArbolSintactico()
+	{
+		if(unidadDeCompilacion!=null)
+			return unidadDeCompilacion.getArbolVisual();
+		
+		return null;
+	}
+	
 	public void darSiguienteToken() 
 	{ 
 		if(indice == listaSimbolosLexicos.size()-1) 
@@ -92,12 +162,24 @@ public class AnalizadorSintactico
 		return listaSimbolosLexicos;
 	} 
 	
+	/**
+	 * Este metodo permite obtener el valor del atributo listaErroresSintacticos
+	 * @return el listaErroresSintacticos
+	 */
+	public ArrayList<ErrorSintactico> getListaErroresSintacticos() {
+		return listaErroresSintacticos;
+	}
+
 	public UnidadCompilacion esUnidadDeCompilacion()
 	{
+		int indiceaux= indice;
+		
 		Paquete paquete= esPaquete();
 		
 		if(paquete==null)
 		{
+			almacenarErrorSintactico(Paquete.class);
+			return null;
 			//manejo de error
 		}
 		
@@ -107,6 +189,8 @@ public class AnalizadorSintactico
 		
 		if(clase==null)
 		{
+			almacenarErrorSintactico(Clase.class);
+			return null;
 			//manejo de error
 		}
 		
@@ -124,6 +208,7 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_NO_PALABRA_RESERVADA);
 			return null;
 		}
 		
@@ -134,6 +219,8 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_NO_IDENTIFICADOR);
+			return null;
 			//manejo de error;
 		}
 		
@@ -144,10 +231,12 @@ public class AnalizadorSintactico
 		}
 		else
 		{
-			//modoPanicoTerminal();
+			almacenarErrorSintactico(ERROR_NO_TERMINAL);
+			return null;
+//			modoPanicoTerminal();
+			
 		}
-		
-		return null;
+
 	}
 	
 	public Importacion esImportacion()
@@ -158,6 +247,7 @@ public class AnalizadorSintactico
 		while(import1!=null)
 		{
 			Importaciones.add(import1);
+			import1= esImport();
 			
 		}
 		
@@ -174,6 +264,7 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_NO_PALABRA_RESERVADA);
 			return null;
 		}
 		if(tokenActual.getTipoToken().equals("Identificador de Import"))
@@ -183,6 +274,8 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_NO_IDENTIFICADOR);
+			return null;
 			//manejo de error
 		}
 		if(tokenActual.getToken().equals("."))
@@ -192,10 +285,11 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_NO_TERMINAL);
+			return null;
 			//manejo de error
 		}
 		
-		return null;
 	}
 	
 	public Clase esClase()
@@ -208,6 +302,7 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_NO_PALABRA_RESERVADA);
 			return null;
 		}
 		
@@ -218,6 +313,8 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_NO_IDENTIFICADOR);
+			return null;
 			//manejo de error
 		}
 		
@@ -227,6 +324,8 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_LLAVE_APERTURA);
+			return null;
 			//manejo de error
 		}
 		
@@ -234,6 +333,7 @@ public class AnalizadorSintactico
 		
 		if(cuerpoclase==null)
 		{
+			return null;
 			//manejo de error
 		}
 		
@@ -244,6 +344,7 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_LLAVE_CIERRE);
 			//manejo de error
 		}
 		
@@ -259,6 +360,7 @@ public class AnalizadorSintactico
 		while(sentenciaClase!=null)
 		{
 			sentenciasClases.add(sentenciaClase);
+			sentenciaClase= esSentenciaClase();
 			
 		}
 		
@@ -278,6 +380,7 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_NO_PALABRA_RESERVADA);
 			return null;
 		}
 		
@@ -289,6 +392,8 @@ public class AnalizadorSintactico
 		}
 		else
 		{
+			almacenarErrorSintactico(ERROR_NO_PALABRA_RESERVADA);
+			return null;
 			//manejo de error
 		}
 		
@@ -306,11 +411,14 @@ public class AnalizadorSintactico
 				darSiguienteToken();
 				if(tokenActual.getTipoToken().equals("Identificador de atributo"))
 				{
+					identificador=tokenActual;
 					identificadoresVaribles.add(identificador);
 					darSiguienteToken();
 				}
 				else
 				{
+					almacenarErrorSintactico(ERROR_NO_IDENTIFICADOR);
+					return null;
 					//manejo de error
 				}
 			}
@@ -322,6 +430,8 @@ public class AnalizadorSintactico
 			}
 			else
 			{
+				almacenarErrorSintactico(ERROR_NO_TERMINAL);
+				return null;
 				//manejo de error
 			}
 		}
@@ -341,6 +451,8 @@ public class AnalizadorSintactico
 			}
 			else
 			{
+				almacenarErrorSintactico(ERROR_NO_IDENTIFICADOR);
+				return null;
 				//manejo de error
 			}
 			
@@ -348,6 +460,7 @@ public class AnalizadorSintactico
 			
 			if(parametros==null)
 			{
+				return null;
 				//manejo de error
 			}
 			
@@ -411,6 +524,7 @@ public class AnalizadorSintactico
 			{
 				//manejo de error
 			}
+			parametro =esParametro();
 		}
 		return new Parametros(parametros);
 	}
@@ -453,6 +567,7 @@ public class AnalizadorSintactico
 		while(sentenciaMetodo!=null)
 		{
 			sentenciasMetodos.add(sentenciaMetodo);
+			sentenciaMetodo= esSentenciaMetodo();
 			
 		}
 		
@@ -839,6 +954,52 @@ public class AnalizadorSintactico
 	
 	public Operacion esOperacion()
 	{
+		Lenguaje operador1= null;
+		Lenguaje operacion= null;
+		
+		if(tokenActual.getToken().equals("("))
+		{
+			darSiguienteToken();
+		}
+		if(tokenActual.getToken().equals("cadena") || tokenActual.getTipoToken().equals("Identificador de atributo")
+				|| tokenActual.getToken().equals("entero") || tokenActual.getToken().equals("racional")
+				|| tokenActual.getToken().equals("caracter") || tokenActual.getToken().equals("bool"))
+		{
+			operador1=tokenActual;
+		}
+		
+		if(tokenActual.getToken().equals("=") || tokenActual.getToken().equals("==") || tokenActual.getToken().equals("<")
+				|| tokenActual.getToken().equals("<=") || tokenActual.getToken().equals(">") || tokenActual.getToken().equals(">=")
+				|| tokenActual.getToken().equals("+") || tokenActual.getToken().equals("-") || tokenActual.getToken().equals("*")
+				|| tokenActual.getToken().equals("/"))
+		{
+			operacion=tokenActual;
+		}
+		
+		Operacion operacion2= esOperacion();
+		
+		if(operacion2==null)
+		{
+			if(operacion==null)
+			{
+				darSiguienteToken();
+				return new Operacion(operador1, operacion, operacion2);
+			}
+			else
+			{
+				//manejo de error
+			}
+		}
+		else
+		{
+			//manejo de error
+		}
+		
+		if(tokenActual.getToken().equals("("))
+		{
+			darSiguienteToken();
+		}
+			
 		return null;
 	}
 }

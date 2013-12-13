@@ -36,6 +36,7 @@ public class VisorAFNs extends javax.swing.JFrame implements ActionListener{
 
 	private File[] ficheros;
 	private String[] nombres;
+	@SuppressWarnings("rawtypes")
 	private JComboBox jComboBoxImagenes;
 	private JLabel jLabel1;
 	private JLabel imagen;
@@ -46,6 +47,7 @@ public class VisorAFNs extends javax.swing.JFrame implements ActionListener{
 		initGUI();
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initGUI() {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

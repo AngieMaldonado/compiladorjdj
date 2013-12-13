@@ -83,4 +83,12 @@ public class Parametro
 	public void setIdentificadorParametro(Lenguaje identificadorParametro) {
 		this.identificadorParametro = identificadorParametro;
 	}
+
+	/**
+	 * Retorna el codigo en java
+	 * @return java code
+	 */
+	public String getJavaCode() {
+		return tipoParametro.getToken()+" "+identificadorParametro.getToken();
+	}
 }

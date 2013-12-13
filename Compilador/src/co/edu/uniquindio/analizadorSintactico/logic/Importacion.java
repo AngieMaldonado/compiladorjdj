@@ -16,7 +16,7 @@ public class Importacion
 {
 	/**
 	 * Atributo que contiene el valor de imports dentro de la clase
-	*/
+	 */
 	List<Import> imports;
 
 	/**
@@ -33,28 +33,7 @@ public class Importacion
 	 * Metodo que se encarga de reservar memoria y luego instanciar la Importacion.java
 	 */
 	public Importacion() {}
-	
-	/**
-	 * @return miRaiz la cual contendra el arbol grafico de esta clase
-	 */
-	public DefaultMutableTreeNode getArbolVisual()
-	{
-		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Importacion");
-		
-		if(imports !=null && imports.size()>0)
-		{
-			DefaultMutableTreeNode raizImports= new DefaultMutableTreeNode("Imports");
-			
-			for(Import importaciones : imports)
-			{
-				raizImports.add(importaciones.getArbolVisual());
-			}
-			
-			miRaiz.add(raizImports);
-		}		
-		return miRaiz;
-	}
-	
+
 	/**
 	 * Este metodo permite obtener el valor del atributo imports
 	 * @return el imports
@@ -69,5 +48,42 @@ public class Importacion
 	 */
 	public void setImports(List<Import> imports) {
 		this.imports = imports;
+	}
+
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Importacion");
+
+		if(imports !=null && imports.size()>0)
+		{
+			//			DefaultMutableTreeNode raizImports= new DefaultMutableTreeNode("Imports");
+
+			for(Import importaciones : imports)
+			{
+				miRaiz.add(importaciones.getArbolVisual());
+			}
+
+			//			miRaiz.add(raizImports);
+		}		
+		return miRaiz;
+	}
+	
+	/**
+	 * El codigo en java
+	 * @return java code
+	 */
+	public String getJavaCode()
+	{
+		String ret = null;
+		
+		for (Import i : imports) 
+		{
+			ret += i.getJavaCode()+"\n";
+		}
+		
+		return ret;
 	}
 }

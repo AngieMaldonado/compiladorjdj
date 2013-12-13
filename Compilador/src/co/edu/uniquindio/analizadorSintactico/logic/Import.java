@@ -34,17 +34,6 @@ public class Import
 	public Import(){}
 
 	/**
-	 * @return miRaiz la cual contendra el arbol grafico de esta clase
-	 */
-	public DefaultMutableTreeNode getArbolVisual()
-	{
-		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Import");
-		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+identificadorClase.getToken()));
-		
-		return miRaiz;
-	}
-	
-	/**
 	 * Este metodo permite obtener el valor del atributo identificadorClase
 	 * @return el identificadorClase
 	 */
@@ -58,5 +47,25 @@ public class Import
 	 */
 	public void setIdentificadorClase(Lenguaje identificadorClase) {
 		this.identificadorClase = identificadorClase;
+	}
+	
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Import");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+identificadorClase.getToken()));
+		
+		return miRaiz;
+	}
+
+	/**
+	 * El codigo en java
+	 * @return java code
+	 */
+	public String getJavaCode()
+	{
+		return "import "+identificadorClase.getToken()+";";
 	}
 }

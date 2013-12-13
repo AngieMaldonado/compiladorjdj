@@ -41,18 +41,6 @@ public class Clase {
 	public Clase() {}
 	
 	/**
-	 * @return miRaiz la cual contendra el arbol grafico de esta clase
-	 */
-	public DefaultMutableTreeNode getArbolVisual()
-	{
-		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Clase");
-		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+identificadorClase.getToken()));
-		miRaiz.add(cuerpoClase.getArbolVisual());
-		
-		return miRaiz;
-	}
-	
-	/**
 	 * Este metodo permite obtener el valor del atributo identificadorClase
 	 * @return el identificadorClase
 	 */
@@ -82,5 +70,25 @@ public class Clase {
 	 */
 	public void setCuerpoClase(SentenciasClase cuerpoClase) {
 		this.cuerpoClase = cuerpoClase;
+	}
+
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Clase");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+identificadorClase.getToken()));
+		miRaiz.add(cuerpoClase.getArbolVisual());
+		
+		return miRaiz;
+	}
+
+	/**
+	 * metodo que genera el codigo java de la categoria sintactica
+	 * @return codigo java
+	 */
+	public String getJavaCode(){
+		return "public class "+identificadorClase.getToken()+" {\n"+cuerpoClase.getJavaCode()+"\n}";
 	}
 }

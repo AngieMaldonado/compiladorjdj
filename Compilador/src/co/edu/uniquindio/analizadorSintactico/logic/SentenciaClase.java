@@ -16,4 +16,10 @@ public abstract class SentenciaClase {
 	 * @return miRaiz la cual contendra el arbol grafico de esta clase
 	 */
 	public abstract DefaultMutableTreeNode getArbolVisual();
+	
+	/**
+	 * metodo que genera el codigo java de la categoria sintactica
+	 * @return codigo java
+	 */
+	public abstract String getJavaCode();
 }

@@ -69,4 +69,18 @@ public class Parametros
 	public void setParametros(List<Parametro> parametros) {
 		this.parametros = parametros;
 	}
+
+	public String getJavaCode() 
+	{
+		String res = null;
+		
+		for (int i = 0; i < parametros.size(); i++) {
+			if(i==parametros.size()-1)
+				res += parametros.get(i).getJavaCode();
+			else
+				res += parametros.get(i).getJavaCode()+", ";
+		}
+		
+		return "("+res+")";
+	}
 }

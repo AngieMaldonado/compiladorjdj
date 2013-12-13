@@ -109,4 +109,16 @@ public class Operacion
 	public void setOperador2(Operacion operador2) {
 		this.operador2 = operador2;
 	}
+	
+	/**
+	 * Da el codigo de java de la operacion
+	 * @return java code
+	 */
+	public String getJavaCode() 
+	{
+		if(operacion != null)
+			return operador1.getToken()+operacion.getToken()+operador2.getJavaCode();
+		else
+			return operador1.getToken();
+	}
 }

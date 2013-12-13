@@ -52,20 +52,6 @@ public class UnidadCompilacion
 	public UnidadCompilacion() {}
 
 	/**
-	 * @return miRaiz la cual contendra el arbol grafico de esta clase
-	 */
-	public DefaultMutableTreeNode getArbolVisual() 
-	{ 
-		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("Unidad de CompilaciÃ³n"); 
-		miRaiz.add(paquete.getArbolVisual());
-		miRaiz.add(imports.getArbolVisual());
-		miRaiz.add(declaracionClase.getArbolVisual());
-
-		return miRaiz; 
-	} 
-
-
-	/**
 	 * Este metodo permite obtener el valor del atributo paquete
 	 * @return el paquete
 	 */
@@ -120,9 +106,9 @@ public class UnidadCompilacion
 	{
 		//Almacenar Todos símbolos métodos   
 		ArrayList<String> parm = new ArrayList<String>();
-		
+
 		SentenciasClase cuerpoClase = declaracionClase.getCuerpoClase();
-		  
+
 		for (int i = 0; i < cuerpoClase.getSentencias().size(); i++)  
 		{   
 			SentenciaClase sc = cuerpoClase.getSentencias().get(i);
@@ -130,17 +116,17 @@ public class UnidadCompilacion
 			if(sc instanceof SentenciaClase_DeclaracionVariable)
 			{
 				SentenciaClase_DeclaracionVariable variable = (SentenciaClase_DeclaracionVariable) sc;
-				
+
 				for (Lenguaje ids : variable.getIdentificadoresVariables()) 
 				{
 					ts.agregarSimboloGeneral(ids.getToken(), variable.getTipo().getToken(), declaracionClase.getIdentificadorClase().getToken());
 				}
-				
+
 			}
 			if(sc instanceof SentenciaClase_Metodo)
 			{
 				SentenciaClase_Metodo metodo = (SentenciaClase_Metodo) sc;
-				
+
 				if(metodo.getParametros()!=null || metodo.getParametros().getParametros().size() > 0)     
 				{      
 					parm = new ArrayList<String>();
@@ -149,13 +135,13 @@ public class UnidadCompilacion
 					for (Parametro p : metodo.getParametros().getParametros())              
 					{ 
 						ts.agregarSimboloGeneral(p.getIdentificadorParametro().getToken(), p.getTipoParametro().getToken(), metodo.getIdentificadorMetodo().getToken()); 
-						
+
 						parm.add(""+p.getTipoParametro().getToken());   
 					}  
-					
+
 					ts.agregarSimboloMetodo(metodo.getIdentificadorMetodo().getToken(), declaracionClase.getIdentificadorClase().getToken(), metodo.getTipoRetorno().getToken(), parm);
 				}
-				
+
 				//Si se crea una variable en una funcion  
 				for (SentenciaMetodo s : metodo.getCuerpoMetodo().getSentenciasMetodo())      
 				{       
@@ -164,18 +150,86 @@ public class UnidadCompilacion
 						SentenciaMetodo_DeclaracionVariable dv = (SentenciaMetodo_DeclaracionVariable) s;     
 
 						ts.agregarSimboloGeneral(dv.getIdentificadorVariable().getToken(), dv.getTipo().getToken(), metodo.getIdentificadorMetodo().getToken());    
-					}        
+					}
+					else
+					{
+						llenarTablaAux(ts, s, metodo.getIdentificadorMetodo().getToken());
+					}
 				}
 			} 
 		}    
 	} 
 
-	/**
-	 * @param tablaSimbolos
-	 * @param errores
-	 */
-	public void analizarSemantica(TablaSimbolos tablaSimbolos, ArrayList<Error> errores) 
+	public void llenarTablaAux(TablaSimbolos ts, SentenciaMetodo sm, String ambito)
 	{
-		// TODO : COMPLETAR
+		if(sm instanceof SentenciaMetodo_DeclaracionVariable) // Devuelve un valor Booleano que indica  si un objeto es una instancia de una clase en particular.  
+		{    
+			SentenciaMetodo_DeclaracionVariable dv = (SentenciaMetodo_DeclaracionVariable) sm;     
+
+			ts.agregarSimboloGeneral(dv.getIdentificadorVariable().getToken(), dv.getTipo().getToken(), ambito);    
+		}        
+		else if(sm instanceof SentenciaMetodo_Si)
+		{
+			for (SentenciaMetodo smAux : ((SentenciaMetodo_Si) sm).getOperaciones().getSentenciasMetodo()) 
+			{
+				llenarTablaAux(ts, smAux, ambito+" Si");
+			}
+		}
+		else if(sm instanceof SentenciaMetodo_Sino)
+		{
+			for (SentenciaMetodo smAux : ((SentenciaMetodo_Si) sm).getOperaciones().getSentenciasMetodo()) 
+			{
+				llenarTablaAux(ts, smAux, ambito+" Sino");
+			}
+		}
+		else if(sm instanceof SentenciaMetodo_Delocontrario)
+		{
+			for (SentenciaMetodo smAux : ((SentenciaMetodo_Si) sm).getOperaciones().getSentenciasMetodo()) 
+			{
+				llenarTablaAux(ts, smAux, ambito+" Delocontrario");
+			}
+		}
+		else if(sm instanceof SentenciaMetodo_Ciclo)
+		{
+			for (SentenciaMetodo smAux : ((SentenciaMetodo_Si) sm).getOperaciones().getSentenciasMetodo()) 
+			{
+				llenarTablaAux(ts, smAux, ambito+" Ciclo");
+			}
+		}
+		else if(sm instanceof SentenciaMetodo_Hacermientras)
+		{
+			for (SentenciaMetodo smAux : ((SentenciaMetodo_Si) sm).getOperaciones().getSentenciasMetodo()) 
+			{
+				llenarTablaAux(ts, smAux, ambito+" Hacermientras");
+			}
+		}
+		else if(sm instanceof SentenciaMetodo_Mientras)
+		{
+			for (SentenciaMetodo smAux : ((SentenciaMetodo_Si) sm).getOperaciones().getSentenciasMetodo()) 
+			{
+				llenarTablaAux(ts, smAux, ambito+" Mientras");
+			}
+		}
+	}
+
+	/**
+	 * @return miRaiz la cual contendra el arbol grafico de esta clase
+	 */
+	public DefaultMutableTreeNode getArbolVisual() 
+	{ 
+		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("Unidad de CompilaciÃ³n"); 
+		miRaiz.add(paquete.getArbolVisual());
+		miRaiz.add(imports.getArbolVisual());
+		miRaiz.add(declaracionClase.getArbolVisual());
+	
+		return miRaiz; 
+	}
+	
+	/**
+	 * @return
+	 */
+	public String getJavaCode()
+	{
+		return paquete.getJavaCode()+"\n"+imports.getJavaCode()+"\n"+declaracionClase.getJavaCode();
 	}
 }

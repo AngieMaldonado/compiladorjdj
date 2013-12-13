@@ -18,17 +18,17 @@ public class SentenciaClase_DeclaracionVariable extends SentenciaClase
 {
 	/**
 	 * Atributo que contiene el valor de tipoAcceso dentro de la clase
-	*/
+	 */
 	private Lenguaje tipoAcceso;
-	
+
 	/**
 	 * Atributo que contiene el valor de tipo dentro de la clase
-	*/
+	 */
 	private Lenguaje tipo;
-	
+
 	/**
 	 * Atributo que contiene el valor de indentificadoresVariables dentro de la clase
-	*/
+	 */
 	private List<Lenguaje> identificadoresVariables;
 
 	/**
@@ -44,35 +44,11 @@ public class SentenciaClase_DeclaracionVariable extends SentenciaClase
 		this.tipo = tipo;
 		this.identificadoresVariables = identificadoresVariables;
 	}
-	
+
 	/**
 	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaClase_DeclaracionVariable.java
 	 */
 	public SentenciaClase_DeclaracionVariable() {}
-	
-	/* (non-Javadoc)
-	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaClase#getArbolVisual()
-	 */
-	public DefaultMutableTreeNode getArbolVisual()
-	{
-		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("DeclaracionVariable");
-		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + tipoAcceso.getToken()));
-		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + tipo.getToken()));
-		
-		if(identificadoresVariables != null && identificadoresVariables.size()>0)
-		{
-			DefaultMutableTreeNode raizIdentificadoresVariables= new DefaultMutableTreeNode("Identificadores de Variable");
-			
-			for(Lenguaje identiVariables : identificadoresVariables)
-			{
-				raizIdentificadoresVariables.add(new DefaultMutableTreeNode("Nombre: "+identiVariables.getToken()));
-			}
-			
-			miRaiz.add(raizIdentificadoresVariables);
-		}
-		
-		return miRaiz;
-	}
 
 	/**
 	 * Este metodo permite obtener el valor del atributo tipoAcceso
@@ -121,5 +97,51 @@ public class SentenciaClase_DeclaracionVariable extends SentenciaClase
 	public void setIndentificadoresVariables(
 			List<Lenguaje> identificadoresVariables) {
 		this.identificadoresVariables = identificadoresVariables;
+	}
+
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaClase#getArbolVisual()
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("DeclaracionVariable");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + tipoAcceso.getToken()));
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + tipo.getToken()));
+	
+		if(identificadoresVariables != null && identificadoresVariables.size()>0)
+		{
+			DefaultMutableTreeNode raizIdentificadoresVariables= new DefaultMutableTreeNode("Identificadores de Variable");
+	
+			for(Lenguaje identiVariables : identificadoresVariables)
+			{
+				raizIdentificadoresVariables.add(new DefaultMutableTreeNode("Nombre: "+identiVariables.getToken()));
+			}
+	
+			miRaiz.add(raizIdentificadoresVariables);
+		}
+	
+		return miRaiz;
+	}
+
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaClase#getJavaCode()
+	 */
+	@Override
+	public String getJavaCode() {
+		String codigo="";
+		if(!identificadoresVariables.isEmpty()){
+			codigo = tipoAcceso.getToken()+" "+tipo.getTipoToken()+" "+tipo.getToken()+" = ";
+	
+			for (int i = 0; i < identificadoresVariables.size(); i++) {
+	
+				if(i!=identificadoresVariables.size()-1){
+					codigo+=identificadoresVariables.get(i).getToken()+", ";
+				}
+				else{
+					codigo+=identificadoresVariables.get(i).getToken()+";";
+				}
+			}
+		}
+		return codigo;
 	}
 }

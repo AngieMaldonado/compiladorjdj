@@ -33,14 +33,6 @@ public class Paquete
 	 */
 	public Paquete() {}
 
-	public DefaultMutableTreeNode getArbolVisual()
-	{
-		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Paquete");
-		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+identificadorPaquete.getToken()));
-		
-		return miRaiz;
-	}
-	
 	/**
 	 * Este metodo permite obtener el valor del atributo identificadorPaquete
 	 * @return el identificadorPaquete
@@ -55,5 +47,21 @@ public class Paquete
 	 */
 	public void setIdentificadorPaquete(Lenguaje identificadorPaquete) {
 		this.identificadorPaquete = identificadorPaquete;
+	}
+
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Paquete");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+identificadorPaquete.getToken()));
+		
+		return miRaiz;
+	}
+	
+	/**
+	 * El codigo en java
+	 * @return java code
+	 */
+	public String getJavaCode(){
+		return "package "+identificadorPaquete.getToken()+";";
 	}
 }

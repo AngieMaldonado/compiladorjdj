@@ -63,21 +63,6 @@ public class SentenciaClase_Metodo extends SentenciaClase
 	 */
 	public SentenciaClase_Metodo(){}
 
-	/* (non-Javadoc)
-	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaClase#getArbolVisual()
-	 */
-	public DefaultMutableTreeNode getArbolVisual()
-	{
-		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Metodo");
-		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+ tipoAcceso.getToken()));
-		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + tipoRetorno.getToken()));
-		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + identificadorMetodo.getToken()));
-		miRaiz.add(parametros.getArbolVisual());
-		miRaiz.add(cuerpoMetodo.getArbolVisual());
-		
-		return miRaiz;
-	}
-	
 	/**
 	 * Este metodo permite obtener el valor del atributo tipoAcceso
 	 * @return el tipoAcceso
@@ -156,5 +141,25 @@ public class SentenciaClase_Metodo extends SentenciaClase
 	 */
 	public void setCuerpoMetodo(SentenciasMetodo cuerpoMetodo) {
 		this.cuerpoMetodo = cuerpoMetodo;
+	}
+
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaClase#getArbolVisual()
+	 */
+	public DefaultMutableTreeNode getArbolVisual()
+	{
+		DefaultMutableTreeNode miRaiz= new DefaultMutableTreeNode("Metodo");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+ tipoAcceso.getToken()));
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + tipoRetorno.getToken()));
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: " + identificadorMetodo.getToken()));
+		miRaiz.add(parametros.getArbolVisual());
+		miRaiz.add(cuerpoMetodo.getArbolVisual());
+		
+		return miRaiz;
+	}
+
+	@Override
+	public String getJavaCode() {
+		return tipoAcceso.getToken()+" "+tipoRetorno.getToken()+" "+identificadorMetodo.getToken()+parametros.getJavaCode()+"\n{"+cuerpoMetodo.getJavaCode()+"\n}";
 	}
 }

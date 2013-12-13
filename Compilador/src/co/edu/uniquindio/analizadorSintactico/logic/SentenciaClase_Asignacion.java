@@ -16,14 +16,14 @@ public class SentenciaClase_Asignacion extends SentenciaClase{
 
 	/**
 	 * Atributo que contiene el valor de variable dentro de la clase
-	*/
+	 */
 	private Lenguaje variable;
 
 	/**
 	 * Atributo que contiene el valor de valor dentro de la clase
-	*/
+	 */
 	private Operacion valor;
-	
+
 
 	/**
 	 * Metodo que se encarga de reservar memoria y luego instanciar la SentenciaClase_Asignacion.java
@@ -74,6 +74,18 @@ public class SentenciaClase_Asignacion extends SentenciaClase{
 	@Override
 	public DefaultMutableTreeNode getArbolVisual() {
 		// TODO Auto-generated method stub
-		return null;
+		DefaultMutableTreeNode miRaiz = new DefaultMutableTreeNode("Asignacion");
+		miRaiz.add(new DefaultMutableTreeNode("Nombre: "+ variable.getToken()));
+		miRaiz.add(valor.getArbolVisual());
+
+		return miRaiz;
+	}
+
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaClase#getJavaCode()
+	 */
+	@Override
+	public String getJavaCode() {
+		return variable.getToken()+" = "+valor.getJavaCode()+";";
 	}
 }
