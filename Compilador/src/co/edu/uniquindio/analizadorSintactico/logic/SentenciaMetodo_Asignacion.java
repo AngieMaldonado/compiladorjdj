@@ -14,7 +14,6 @@ import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
  */
 public class SentenciaMetodo_Asignacion extends SentenciaMetodo
 {
-
 	/**
 	 * Atributo que contiene el valor de variable dentro de la clase
 	*/
@@ -76,5 +75,4 @@ public class SentenciaMetodo_Asignacion extends SentenciaMetodo
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
 }

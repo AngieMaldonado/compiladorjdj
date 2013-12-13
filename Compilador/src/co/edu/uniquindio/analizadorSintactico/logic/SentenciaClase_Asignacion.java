@@ -1,5 +1,7 @@
 package co.edu.uniquindio.analizadorSintactico.logic;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
 
 /**
@@ -10,7 +12,7 @@ import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
  * Esta clase es la que contiene los atributos de SentenciaClase_Asignacion.java y 
  * maneja su información
  */
-public class SentenciaClase_Asignacion {
+public class SentenciaClase_Asignacion extends SentenciaClase{
 
 	/**
 	 * Atributo que contiene el valor de variable dentro de la clase
@@ -65,5 +67,13 @@ public class SentenciaClase_Asignacion {
 	public void setValor(Operacion valor) {
 		this.valor = valor;
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see co.edu.uniquindio.analizadorSintactico.logic.SentenciaClase#getArbolVisual()
+	 */
+	@Override
+	public DefaultMutableTreeNode getArbolVisual() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -14,8 +14,6 @@ import co.edu.uniquindio.analizadorLexico.logic.Lenguaje;
  */
 public class SentenciaMetodo_Retorno extends SentenciaMetodo
 {
-	
-	
 	/**
 	 * Atributo que contiene el valor de variable dentro de la clase
 	*/
@@ -25,8 +23,6 @@ public class SentenciaMetodo_Retorno extends SentenciaMetodo
 	 * Atributo que contiene el valor de valor dentro de la clase
 	*/
 	private Operacion valor;
-	
-	
 
 	/**
 	 * Metodo que se encarga de reservar memoria y luego instanciar la Retorno.java
@@ -79,6 +75,4 @@ public class SentenciaMetodo_Retorno extends SentenciaMetodo
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 }
